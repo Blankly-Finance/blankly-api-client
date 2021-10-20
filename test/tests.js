@@ -21,20 +21,20 @@ function confirmValidResult(resp) {
 
 
 describe('Client', function() {
-    describe('#get_account', function() {
-        it('should return account values', async () => {
-            for (let i = 0; i<exchanges.length; i++) {
-                client.setExchange(exchanges[i])
-                let resp = (await client.getAccount()).data
-                confirmValidResult(resp)
-            }
-        })
-    })
     describe('#get_products', function() {
         it('should return all available symbols', async () => {
             for (let i = 0; i<exchanges.length; i++) {
                 client.setExchange(exchanges[i])
                 let resp = (await client.getProducts()).data
+                confirmValidResult(resp)
+            }
+        })
+    })
+    describe('#get_account', function() {
+        it('should return account values', async () => {
+            for (let i = 0; i<exchanges.length; i++) {
+                client.setExchange(exchanges[i])
+                let resp = (await client.getAccount()).data
                 confirmValidResult(resp)
             }
         })

@@ -112,27 +112,27 @@ async function getProducts() {
 }
 
 async function getAccount(symbol = undefined) {
-    return send('get_account', {symbol: symbol})
+    return send('get_account', {'symbol': symbol})
 }
 
 async function marketOrder(symbol, side, funds) {
-    return send('get_account', {symbol: symbol, side: side, funds: funds})
+    return send('market_order', {'symbol': symbol, 'side': side, 'funds': funds})
 }
 
 async function limitOrder(symbol, side, price, size) {
-    return send('get_account', {symbol: symbol, side: side, price: price, size: size})
+    return send('limit_order', {'symbol': symbol, 'side': side, 'price': price, 'size': size})
 }
 
 async function cancelOrder(symbol, orderID) {
-    return send('get_account', {symbol: symbol, order_id: orderID})
+    return send('cancel_order', {'symbol': symbol, order_id: orderID})
 }
 
-async function getOpenOrders(symbol) {
-    return send('get_account', {symbol: symbol})
+async function getOpenOrders(symbol = undefined) {
+    return send('get_open_orders', {'symbol': symbol})
 }
 
 async function getOrder(symbol, orderID) {
-    return send('get_account', {symbol: symbol, order_id: orderID})
+    return send('get_order', {'symbol': symbol, order_id: orderID})
 }
 
 async function getFees() {
@@ -140,16 +140,16 @@ async function getFees() {
 }
 
 async function getProductHistory(symbol, epochStart, epochStop, resolution) {
-    return send('get_product_history', {symbol: symbol, epoch_start: epochStart, epoch_stop:
-                                                       epochStop, resolution: resolution})
+    return send('get_product_history', {'symbol': symbol, epoch_start: epochStart, epoch_stop:
+                                                       epochStop, 'resolution': resolution})
 }
 
 async function getOrderFilter(symbol) {
-    return send('get_order_filter', {symbol: symbol})
+    return send('get_order_filter', {'symbol': symbol})
 }
 
 async function getPrice(symbol) {
-    return send('get_price', {symbol: symbol})
+    return send('get_price', {'symbol': symbol})
 }
 
 
@@ -159,8 +159,14 @@ module.exports.setSandbox = setSandbox
 module.exports.setBinanceTLD = setBinanceTLD
 module.exports.setBaseURL = setBaseURL
 
-module.exports.getAccount = getAccount
+
 module.exports.getProducts = getProducts
+module.exports.getAccount = getAccount
+module.exports.marketOrder = marketOrder
+module.exports.limitOrder = limitOrder
+module.exports.cancelOrder = cancelOrder
+module.exports.getOpenOrders = getOpenOrders
+module.exports.getOrder = getOrder
 module.exports.getFees = getFees
 module.exports.getProductHistory = getProductHistory
 module.exports.getOrderFilter = getOrderFilter
