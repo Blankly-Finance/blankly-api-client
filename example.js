@@ -2,11 +2,11 @@
 let client = require('./src/blankly_client')
 
 // Set the base settings
-client.setExchange('alpaca')
+client.setExchange('binance')
 client.setKeys({'API_KEY': '***', 'API_SECRET': '***', 'API_PASS': '***'})
 client.setSandbox(true)
 
-let symbol = 'AAPL'
+let symbol = 'BTC-USDT'
 
 /*
 These two are commented out because they have incredibly long responses ~27k keys each
@@ -22,12 +22,12 @@ These two are commented out because they have incredibly long responses ~27k key
 //     console.log(response.data)
 // })
 
-client.marketOrder(symbol, 'buy', 10).then(function (response) {
+client.marketOrder(symbol, 'buy', .01).then(function (response) {
     console.log("Market Order: ")
     console.log(response.data)
 })
 
-client.limitOrder(symbol, 'buy', 10000, 10).then(function (response) {
+client.limitOrder(symbol, 'buy', 60000, .01).then(function (response) {
     console.log("Limit Order ")
     console.log(response.data)
 })
