@@ -115,8 +115,8 @@ async function getAccount(symbol = undefined) {
     return send('get_account', {'symbol': symbol})
 }
 
-async function marketOrder(symbol, side, funds) {
-    return send('market_order', {'symbol': symbol, 'side': side, 'funds': funds})
+async function marketOrder(symbol, side, size) {
+    return send('market_order', {'symbol': symbol, 'side': side, 'size': size})
 }
 
 async function limitOrder(symbol, side, price, size) {
