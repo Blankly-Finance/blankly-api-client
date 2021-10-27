@@ -17,7 +17,7 @@ Hi, welcome to the Blankly API client for order execution. This details the rout
 
 ### Example Query `get_account` at the `/` route:
 
-```json
+```python
 {
     'exchange': 'coinbase_pro',
     'auth': {
@@ -51,12 +51,12 @@ Get all trading pairs currently on the exchange.
   {
     "symbol": "BTC-USD",
     "base_asset": "BTC",
-  	"quote_asset": "USD",
-  	"base_min_size": 0.0001,
-  	"base_max_size": 280,
-  	"base_increment": .01
+    "quote_asset": "USD",
+    "base_min_size": 0.0001,
+    "base_max_size": 280,
+    "base_increment": .01
   },
-	...
+    ...
 ]
 ```
 
@@ -94,7 +94,7 @@ If `symbol='BTC'`:
 
 ```python
 "BTC": {
-	"available": 2.3,
+  "available": 2.3,
   "hold": 0.2
 },
 "USD": {
@@ -152,15 +152,15 @@ Create a new live limit order on your exchange.
 
 ```python
 {
-  symbol: 'BTC-USDT',
-  price: 60000,
-  status: 'open',
-  type: 'limit',
-  side: 'buy',
-  id: '8980693',
-  created_at: 1634998603111,
-  size: 0.01,
-  time_in_force: 'GTC',
+  'symbol': 'BTC-USDT',
+  'price': 60000,
+  'status': 'open',
+  'type': 'limit',
+  'side': 'buy',
+  'id': '8980693',
+  'created_at': 1634998603111,
+  'size': 0.01,
+  'time_in_force': 'GTC'
 }
 ```
 
@@ -179,7 +179,7 @@ Cancel a particular order.
 
 ```python
 {
-	"order_id": "b6d2f951-dae0-89e8-3e79-b460b1e9eead"
+  "order_id": "b6d2f951-dae0-89e8-3e79-b460b1e9eead"
 }
 ```
 
@@ -201,16 +201,16 @@ Get a full list of open orders.
 
 ```python
 [
-	{
-		'id': 'dfa936a4-ea8b-4dbf-bb99-b2b632a5370a', 
-		'price': 10000.0, 
-		'size': 1.0, 
-		'symbol': 'BTC-USD', 
-		'side': 'buy', 
-		'type': 'limit', 
-		'status': 'open'
-	},
-	...
+  {
+    'id': 'dfa936a4-ea8b-4dbf-bb99-b2b632a5370a', 
+    'price': 10000.0, 
+	'size': 1.0, 
+    'symbol': 'BTC-USD', 
+    'side': 'buy', 
+    'type': 'limit', 
+    'status': 'open'
+  },
+  ...
 ]
 ```
 
@@ -292,12 +292,60 @@ Download historical data with rows of *at least* `time (epoch seconds)`, `low`',
 
 #### Response
 
-Pandas dataframe with at least these columns.
+JSON string with columns `open`, `high`, `low`, and `close`. Each repeated key number is part of the same row.
 
-| time       | low     | high    | open    | close   | volume        |
-| ---------- | ------- | ------- | ------- | ------- | ------------- |
-| 1591110000 | 9270.0  | 9602.0  | 9583.36 | 9464.46 | 5979.77327365 |
-| 1591113600 | 9417.38 | 9510.94 | 9464.44 | 9478.95 | 1185.12835638 |
+```python
+{
+  "time": {
+    "0": 1633064400,
+    "1": 1633068000,
+    "2": 1633071600,
+    "3": 1633075200,
+    "4": 1633078800,
+    "5": 1633082400,
+  },
+  "low": {
+    "0": 43292.96,
+    "1": 39977.15,
+    "2": 9000.0,
+    "3": 40782.46,
+    "4": 42270.2,
+    "5": 44780.28,
+  },
+  "high": {
+    "0": 43854.7,
+    "1": 44036.24,
+    "2": 70000.0,
+    "3": 49356.24,
+    "4": 50000.0,
+    "5": 49999.92,
+  },
+  "open": {
+    "0": 43811.2,
+    "1": 43850.33,
+    "2": 43993.98,
+    "3": 44789.52,
+    "4": 44945.81,
+    "5": 44901.5,
+  },
+  "close": {
+    "0": 43848.66,
+    "1": 43995.1,
+    "2": 44789.52,
+    "3": 45116.48,
+    "4": 44886.12,
+    "5": 47090.73,
+  },
+  "volume": {
+    "0": 2.256374,
+    "1": 14.547997,
+    "2": 72.533733,
+    "3": 98.349979,
+    "4": 98.346201,
+    "5": 35.125009,
+  }
+}
+```
 
 ### `getOrderFilter(symbol)`
 
