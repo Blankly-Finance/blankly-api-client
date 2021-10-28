@@ -7,7 +7,7 @@ let settings = {
     exchange: undefined,
     sandbox: undefined,
     binanceTLD: 'us',
-    baseURL: 'http://localhost:3000'
+    baseURL: 'http://35.232.68.62:8080'
 }
 
 

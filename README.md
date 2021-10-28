@@ -28,7 +28,7 @@ Hi, welcome to the Blankly API client for order execution. This details the rout
     'command': 'get_account',
     'args': {},
     'sandbox': true,
-    'binance_tld': 'us', // Only required when using binance
+    'binance_tld': 'us', # Only required when using binance
 }
 ```
 
