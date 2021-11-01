@@ -2,25 +2,21 @@
 let client = require('./src/blankly_client')
 
 // Set the base settings
-client.setExchange('binance')
+client.setExchange('coinbase_pro')  // supports "coinbase_pro" "alpaca" or "binance"
 client.setKeys({'API_KEY': '***', 'API_SECRET': '***', 'API_PASS': '***'})
 client.setSandbox(true)
 
-let symbol = 'BTC-USDT'
+let symbol = 'BTC-USD'
 
-/*
-These two are commented out because they have incredibly long responses ~27k keys each
- */
-// Show the account values
-// client.getProducts(symbol).then(function (response) {
-//     console.log("Products: ")
-//     console.log(response.data)
-// })
+client.getProducts(symbol).then(function (response) {
+    console.log("Products: ")
+    console.log(response.data)
+})
 
-// client.getAccount().then(function (response) {
-//     console.log("Account Values: ")
-//     console.log(response.data)
-// })
+client.getAccount().then(function (response) {
+    console.log("Account Values: ")
+    console.log(response.data)
+})
 
 client.marketOrder(symbol, 'buy', .01).then(function (response) {
     console.log("Market Order: ")
