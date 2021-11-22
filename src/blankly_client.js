@@ -7,7 +7,7 @@ let settings = {
     exchange: undefined,
     sandbox: undefined,
     binanceTLD: 'us',
-    baseURL: 'http://35.232.68.62:8080'
+    baseURL: 'https://connect.blankly.finance'
 }
 
 
@@ -36,7 +36,7 @@ async function send(command, args) {
     axios.defaults.baseURL = settings.baseURL
 
     return axios({
-        method: 'get',
+        method: 'post',
         url: '/',
         data: {
             exchange: settings.exchange,
