@@ -4,7 +4,7 @@ let client = require('./src/blankly_client')
 // Set the base settings
 client.setExchange('coinbase_pro')  // supports "coinbase_pro" "alpaca" or "binance"
 client.setKeys({'API_KEY': '***', 'API_SECRET': '***', 'API_PASS': '***'})
-client.setSandbox(true)
+client.setDemo(true)
 
 let symbol = 'BTC-USD'
 

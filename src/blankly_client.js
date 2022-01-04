@@ -5,9 +5,10 @@ let utils = require('./utils')
 let settings = {
     keys: undefined,
     exchange: undefined,
-    sandbox: undefined,
+    sandbox: false,
     binanceTLD: 'us',
-    baseURL: 'https://connect.blankly.finance'
+    baseURL: 'http://localhost', // 'https://connect.blankly.finance',
+    demo: false
 }
 
 
@@ -43,6 +44,7 @@ async function send(command, args) {
             auth: settings.keys,
             sandbox: settings.sandbox,
             binance_tld: settings.binanceTLD,
+            demo: settings.demo,
             command: command,
             args: args
         }
@@ -107,6 +109,14 @@ function setBaseURL(newBaseURL) {
     }
 }
 
+function setDemo (demoStatus) {
+    if (demoStatus === true || demoStatus === false) {
+        settings.demo = demoStatus
+    } else {
+        throw new Error("Invalid sandbox setting - must be bool")
+    }
+}
+
 async function getProducts() {
     return send('get_products', {})
 }
@@ -158,6 +168,7 @@ module.exports.setExchange = setExchange
 module.exports.setSandbox = setSandbox
 module.exports.setBinanceTLD = setBinanceTLD
 module.exports.setBaseURL = setBaseURL
+module.exports.setDemo = setDemo
 
 
 module.exports.getProducts = getProducts
