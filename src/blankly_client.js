@@ -7,7 +7,7 @@ let settings = {
     exchange: undefined,
     sandbox: false,
     binanceTLD: 'us',
-    baseURL: 'http://localhost', // 'https://connect.blankly.finance',
+    baseURL: 'https://connect.blankly.finance',
     demo: false
 }
 
